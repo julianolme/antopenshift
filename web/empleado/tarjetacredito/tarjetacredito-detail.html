@@ -1,0 +1,46 @@
+
+
+
+<form name="formularioCliente">
+
+
+
+    numero:<input ng-model="tarjetaCredito.numero" name="numero" id="numero" required>
+    <br>   
+    mesCaducidad:<input ng-model="tarjetaCredito.mesCaducidad" name="mesCaducidad" id="mesCaducidad" required>
+    <br>   
+    anyoCaducidad:<input ng-model="tarjetaCredito.anyoCaducidad" name="anyoCaducidad" id="anyoCaducidad" required>
+    <br>  
+    nombreTitular:<input ng-model="tarjetaCredito.nombreTitular" name="nombreTitular" id="nombreTitular" required>
+    <br>  
+    cvv:<input ng-model="tarjetaCredito.cvv" name="cvv" id="cvv">
+    <br>   
+    Cuenta Bancaria<select ng-model="tarjetaCredito.idCuentaBancaria" name="idCuentaBancaria" id="idCuentaBancaria" ng-options="cuentaBancaria.idCuentaBancaria as cuentaBancaria.numeroCuentaBancaria for cuentaBancaria in cuentaBancariaList" required></select>
+    <br>  
+    tipoTarjeta:<select ng-model="tarjetaCredito.tipoTarjeta" name="tipoTarjeta" id="tipoTarjeta" ng-options="tipoTarjeta.nombre as tipoTarjeta.nombre for tipoTarjeta in tipoTarjetaList" required></select>
+    <br>   
+
+    <button ng-click="comprobarSaldo()">Insertar nueva tarjeta</button>
+
+</form>
+
+<h3 ng-show="formularioCliente.$invalid || valGOLD || valCLASSIC">Errores de validación Cliente</h3>
+<div ng-show="formularioCliente.$invalid">
+    <p ng-show="formularioCliente.numero.$error.required">El campo numero es requerido</p>
+    <p ng-show="formularioCliente.mesCaducidad.$error.required">El campo mesCaducidad es requerido</p>
+    <p ng-show="formularioCliente.anyoCaducidad.$error.required">El campo anyoCaducidad es requerido</p>
+    <p ng-show="formularioCliente.nombreTitular.$error.required">El campo NombreTitular es requerido</p>
+    <p ng-show="formularioCliente.tipoTarjeta.$error.required">El campo tipoTarjeta es requerido</p>
+    <p ng-show="formularioCliente.idCuentaBancaria.$error.required">El campo Cuenta Bancaria es requerido</p>
+</div>
+<p ng-show="valGOLD">Saldo Insuficiente: Una cuenta GOLD debe tener una cuenta asociada con un saldo igual o superior a 100000 euros</p>
+<p ng-show="valCLASSIC">Saldo Insuficiente: Una cuenta CLASSIC debe tener una cuenta asociada con un saldo superior a 0 euros</p>
+<div ng-show="validacionServidor">
+    <h3>Errores de validación en Servidor</h3>
+    <table>
+        <tr ng-repeat="errorServidor in errorServidorList">
+            <td>{{errorServidor.fieldName}}: </td>
+            <td>{{errorServidor.message}}</td>
+        </tr>
+    </table>
+</div>

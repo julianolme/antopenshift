@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fpmislata.banco.dominio.TarjetaCredito" table="tarjetaCredito" >
+        <id column="idTarjetaCredito"  name="idTarjetaCredito" type="integer" >
+            <generator class="identity"/>
+        </id>
+        <property name="numero"   />
+        <property name="mesCaducidad"   />
+        <property name="anyoCaducidad"   />
+        <property name="nombreTitular"   />
+        <property name="cvv"   />
+        <property name="idCuentaBancaria"   />
+        <property name="tipoTarjeta" >
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.fpmislata.banco.dominio.TipoTarjeta</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+
+    </class>
+</hibernate-mapping>
